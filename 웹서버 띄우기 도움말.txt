@@ -1,0 +1,56 @@
+Express 설치하기
+1. 터미널 열기
+2. npm init 입력 후 엔터
+- npm은 라이브러리를 설치를 도와주는 도구
+- 어떤 라이브러리를 설치했는지 기록하는곳 >> package.json
+- 엔터로 넘기다 entry point 에 내가 원하는 파일명으로 지정 ex) server.js
+3. 터미널에 npm install express 입력 후 엔터 >> express 설치
+- 라이브러리 설치할 때 마다 package.json 에 기록됨
+- node_modules 라는 폴더 생성됨 >> 모든 라이브러리 에 필요한 자료들을 담는 공간
+
+--------------------------------------
+
+웹서버 띄우기
+
+1. entry point 에 내가 지정한 파일명으로 파일 만들기 ex) sever.js 로 했다면  sever.js 파일을 만들어 주자
+2. 서버를 띄우기 위한 기본 셋팅 (express 라이브러리)
+
+	const express = require('express');				 //express라이브러리를 참고해 달라
+	const app = express();
+
+	app.listen(서버띄울 포트번호, function(띄운 후 실행할 코드){
+		console.log('listening on 8080')			//8080포트로 웹서버를 열고 열릴시 listening on 8080을 출력해주세요
+	});
+
+3. 웹서버 접속방법
+- 주소창에 localhost:포트번호
+
+-------------------------------------
+
+서버 재실행 자동화 시키기
+1. 터미널 창에 npm install -g nodemon 입력
+- '-g' 는 이 파일만 아니라 폴더 안의 모든 파일에게 해당하게 하는것
+2. nodemon sever.js 입력 하면 실행됨
+
+빨간색으로 보안오류 뜰시
+1. 관리자 권한으로 powershell 실행후
+2. execuctionpolicy 입력
+3. set-execuctionpolicy ubrestricted 입력
+4. y입력
+ 이후 다시 가서 입력
+
+--------------------------------------
+get요청 처리
+
+html파일 띄우기
+'/' = 홈이라는뜻
+
+app.get('/', function(요청, 응답){
+    응답.sendFile(__dirname + '/index.html');
+});
+
+/level 로 접속시 화면에 띄우기
+
+app.get('/level',function(요청, 응답){
+    응답.send('이게 보이면 응답된것');
+});
